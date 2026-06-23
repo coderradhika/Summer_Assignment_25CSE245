@@ -1,4 +1,4 @@
-// wap to find string length without strlen()
+// wap to reverse a string 
 
 #include <stdio.h>
 
@@ -8,7 +8,7 @@ int main() {
     char str[MAX_SIZE];
     int length = 0;
 
-    printf("Enter a string: ");
+    printf("Enter a string to reverse: ");
     
     if (fgets(str, sizeof(str), stdin) == NULL) {
         printf("Error: Failed to read input stream.\n");
@@ -21,11 +21,22 @@ int main() {
 
     if (length > 0 && str[length - 1] == '\n') {
         length--;
-        str[length] = '\0'; 
+        str[length] = '\0';
     }
 
-    printf("\nProcessed String: \"%s\"\n", str);
-    printf("Actual String Length: %d\n", length);
+    int left = 0;
+    int right = length - 1;
+
+    while (left < right) {
+        char temp = str[left];
+        str[left] = str[right];
+        str[right] = temp;
+
+        left++;
+        right--;
+    }
+
+    printf("\nReversed String: \"%s\"\n", str);
 
     return 0;
 }
